@@ -9,8 +9,7 @@
 
 class BotLevel3 : public BotLevel2 {
    protected:
-    pII hard_level(char board[][BOARD_N_MAX], const int size, const int goal,
-                   const char botSymbol, const char playerSymbol);
+    pII hard_level(char board[][BOARD_N_MAX], const int size, const int goal);
 
    public:
     BotLevel3(const BotLevel& _level, const char& _symbol);
