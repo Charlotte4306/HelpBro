@@ -14,6 +14,10 @@ const int  RANDOM_SEED    = 2013;
 const int BOARD_N_MAX = 12;
 const int SLEEP_TIME  = 1500;
 
+// ─── SDL Window defaults ────────────────────────────────────
+const int DEFAULT_SCREEN_W = 960;
+const int DEFAULT_SCREEN_H = 720;
+
 // ─── Global RNG ─────────────────────────────────────────────
 extern std::mt19937 generator;
 
@@ -34,6 +38,9 @@ typedef std::pair<int,int> pII;
 struct RunConfig {
     bool        interactive  = true;
     bool        judge_mode   = false;
+    bool        gui_mode     = false;   // -g / --gui
+    int         screenWidth  = DEFAULT_SCREEN_W;
+    int         screenHeight = DEFAULT_SCREEN_H;
     std::string input_file;
     bool        to_file      = true;
     std::string log_file     = "log.txt";

@@ -4,6 +4,11 @@
 #include "game/engine.h"
 #include "terminal/interaction.h"
 #include <iostream>
+#include <memory>
+
+// Forward declarations for factory functions
+// Defined in engine.cpp to keep main.cpp clean
+void runGame(const RunConfig& config);
 
 int main(int argc, char* argv[]) {
 #ifdef _WIN32
@@ -12,24 +17,11 @@ int main(int argc, char* argv[]) {
 
     RunConfig config = parseArgs(argc, argv);
 
-    GameLogger::init(config.judge_mode, true, config.log_file);
+    GameLogger::init(config.judge_mode, config.to_file, config.log_file);
     GameLogger::log("GameLogger initialized!");
+    GameLogger::log(std::string("GUI mode: ") + (config.gui_mode ? "ON" : "OFF"));
 
-    std::streambuf* cin_backup = initInteraction(config);
-    GameLogger::log("GameInteraction initialized!");
-
-    GameSetup gameSetup;
-    startGame(config, gameSetup);
-    GameLogger::log("GameEngine initialized!");
-
-    GameResult gameResult = playGame(config, gameSetup);
-    GameLogger::log("GameEngine playing done!");
-
-    endGame(config, gameSetup, gameResult);
-    GameLogger::log("GameEngine show endgame done!");
-
-    closeInteraction(cin_backup);
-    GameLogger::log("GameInteraction closed!");
+    runGame(config);
 
     GameLogger::log("GameLogger closing . . .");
     GameLogger::close();
