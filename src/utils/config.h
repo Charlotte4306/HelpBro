@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <random>
+#include <utility>
 
 // ─── Version ────────────────────────────────────────────────
 const std::string VERSION = "0.4.25022782";
@@ -11,8 +12,10 @@ const bool TIME_ENABLED   = true;
 const int  RANDOM_SEED    = 2013;
 
 // ─── Constants ──────────────────────────────────────────────
-const int BOARD_N_MAX = 12;
-const int SLEEP_TIME  = 1500;
+const int BOARD_N_MAX  = 12;
+const int SLEEP_TIME   = 1500;
+constexpr int NO_CONTEXT = -1;
+constexpr int DRAW_RESULT = -1;
 
 // ─── SDL Window defaults ────────────────────────────────────
 const int DEFAULT_SCREEN_W = 960;
@@ -31,14 +34,13 @@ enum class SelectType {
 enum class EndRule    { NONE, OPEN_ONE, OPEN_TWO };
 
 // ─── Type alias ─────────────────────────────────────────────
-#include <utility>
 typedef std::pair<int,int> pII;
 
 // ─── Structs ────────────────────────────────────────────────
 struct RunConfig {
     bool        interactive  = true;
     bool        judge_mode   = false;
-    bool        gui_mode     = false;   // -g / --gui
+    bool        gui_mode     = false;
     int         screenWidth  = DEFAULT_SCREEN_W;
     int         screenHeight = DEFAULT_SCREEN_H;
     std::string input_file;
@@ -57,9 +59,7 @@ struct GameSetup {
 };
 
 struct GameResult {
-    int  winner;
-    bool isBot;
-    int  turns;
+    int  winner = DRAW_RESULT;
+    bool isBot  = false;
+    int  turns  = 0;
 };
-
-constexpr int DRAW_RESULT = -1;

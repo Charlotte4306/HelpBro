@@ -1,13 +1,13 @@
 /**
  * Bot LV2 header file
+ * BotLevel2 ke thua BotLevel1 (chien luoc MEDIUM)
  */
 
 #pragma once
 
-#include "../setup.h"
-#include "bot_base.h"
+#include "bot_lv1.h"
 
-class BotLevel2 : public Bot {
+class BotLevel2 : public BotLevel1 {
    protected:
     pII simple_heuristic(char board[][BOARD_N_MAX], const int size, const int goal,
                          const char botSymbol, const char playerSymbol);
