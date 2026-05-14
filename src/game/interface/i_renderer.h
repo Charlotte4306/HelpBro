@@ -1,40 +1,12 @@
 /**
  * I Renderer header file
- *
  */
 
 #pragma once
 
-/* ---------- Importing ---------- */
-
 #include "../setup.h"
-#include "../../utils/config.h"
 #include "../logic.h"
 
-/* ---------- Declarations ---------- */
-
-/**
- * Mô tả:
- *   Interface I_Renderer định nghĩa các hàm cần thiết để hiển thị UI của game.
- *   Các implementation cụ thể (TerminalRenderer, SDLRenderer, ...) sẽ kế thừa class này.
- *
- *   Engine sẽ sử dụng interface này để:
- *   - Render board
- *   - Hiển thị menu chọn
- *   - Hiển thị kết quả
- *
- * Đầu vào:
- *   - Các dữ liệu game (board, player, result, ...)
- *
- * Đầu ra:
- *   - Hiển thị UI (console hoặc GUI)
- *
- * Tác dụng phụ:
- *   - In ra màn hình (terminal hoặc cửa sổ đồ họa)
- *
- * NOTE:
- *   - Đây là abstract class (có các hàm pure virtual)
- */
 class I_Renderer {
    public:
     I_Renderer();

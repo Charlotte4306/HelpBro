@@ -1,6 +1,14 @@
 #pragma once
 #include "../utils/config.h"
 
+/**
+ * Struct luu thong tin duong thang (dung de highlight khi ket thuc game).
+ */
+struct WinLine {
+    int startRow, startCol;
+    int endRow,   endCol;
+};
+
 void initBoard(char board[][BOARD_N_MAX], const int size);
 bool isValidMove(const char board[][BOARD_N_MAX], const int size, const int row, const int col);
 void makeMove(char board[][BOARD_N_MAX], const int row, const int col, const char symbol);
