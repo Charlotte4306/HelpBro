@@ -4,22 +4,22 @@
 #include <utility>
 
 // ─── Version ────────────────────────────────────────────────
-const std::string VERSION = "0.4.25022782";
+inline const std::string VERSION = "0.4.25022782";
 
 // ─── Flags ──────────────────────────────────────────────────
-const bool ALGORITHM_FLAG = true;
-const bool TIME_ENABLED   = true;
-const int  RANDOM_SEED    = 2013;
+constexpr bool ALGORITHM_FLAG = true;
+constexpr bool TIME_ENABLED   = true;
+constexpr int  RANDOM_SEED    = 2013;
 
 // ─── Constants ──────────────────────────────────────────────
-const int BOARD_N_MAX  = 12;
-const int SLEEP_TIME   = 1500;
-constexpr int NO_CONTEXT = -1;
-constexpr int DRAW_RESULT = -1;
+constexpr int BOARD_N_MAX  = 12;
+constexpr int SLEEP_TIME   = 1500;
+constexpr int NO_CONTEXT   = -1;
+constexpr int DRAW_RESULT  = -1;
 
 // ─── SDL Window defaults ────────────────────────────────────
-const int DEFAULT_SCREEN_W = 960;
-const int DEFAULT_SCREEN_H = 720;
+constexpr int DEFAULT_SCREEN_W = 960;
+constexpr int DEFAULT_SCREEN_H = 720;
 
 // ─── Global RNG ─────────────────────────────────────────────
 extern std::mt19937 generator;
