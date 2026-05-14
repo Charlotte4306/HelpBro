@@ -1,3 +1,5 @@
+#include "../sdl/renderer.h"
+#include "../sdl/interaction.h"
 #include "engine.h"
 #include "logic.h"
 #include "bot/bot.h"
@@ -206,9 +208,6 @@ void runGame(const RunConfig& config) {
     std::unique_ptr<I_Interaction> inp;
 
     if (config.gui_mode) {
-        // Lazy include to avoid pulling SDL2 headers when not needed
-#include "../sdl/renderer.h"
-#include "../sdl/interaction.h"
         rnd = std::make_unique<SDLRenderer>();
         inp = std::make_unique<SDLInteraction>();
     } else {
