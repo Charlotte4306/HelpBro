@@ -6,56 +6,54 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 2. Recursively find all source files in src/ and its subdirectories
-# This will include interaction/, logic/, renderer/, utils/, etc.
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 # 3. Find SDL packages
-# Note: You can comment out one of these depending on which version you actually use
 list(PREPEND CMAKE_PREFIX_PATH "C:/SDL2")
 find_package(SDL2 REQUIRED)
 find_package(SDL2_ttf REQUIRED)
-
-# find_package(SDL3 REQUIRED) # Uncomment this if you switch to SDL3
 
 # 4. Define the executable target
 add_executable(game ${SOURCES})
 
 # 5. Add include directories
-# Using target_include_directories is the modern CMake approach
 target_include_directories(game PRIVATE 
      src 
-    # src/interaction 
-    # src/logic 
-    # src/renderer 
-    # src/utils
-    # This allows you to use #include "logger.h" instead of "src/utils/logger.h"
-    ${SDL2_INCLUDE_DIRS} # Include path for SDL2
-    # ${SDL3_INCLUDE_DIRS} # Include path for SDL3
+    ${SDL2_INCLUDE_DIRS}
 )
 
 # 6. Link libraries
-# This connects the SDL binary files to your project
 target_link_libraries(game PRIVATE 
-    #mingw32
     SDL2::SDL2main
-    SDL2::SDL2         # Link SDL2 (standard way)
+    SDL2::SDL2
     SDL2_ttf::SDL2_ttf
-    # SDL3::SDL3       # Link SDL3 (standard way)
 )
 
 # 7. Set the output directory for the executable
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
-# 8. Compiler options for warnings and optimization
+# 8. Compiler options
 if(MSVC)
     target_compile_options(game PRIVATE 
-        /W4
+        /W1                          # Chi hien thi loi nghiem trong
+        /wd4065                      # switch co default nhung khong co case
+        /wd4100                      # tham so ham khong duoc dung
+        /wd4189                      # bien khai bao nhung khong dung
+        /wd4244                      # chuyen doi kieu du lieu (int -> char...)
+        /wd4267                      # chuyen doi size_t -> int
+        /wd4996                      # ham deprecated
         $<$<CONFIG:Debug>:/Od>
         $<$<CONFIG:Release>:/O2>
         /D_CRT_SECURE_NO_WARNINGS
     )
 else()
-    target_compile_options(game PRIVATE -Wall -Wextra -O2)
+    target_compile_options(game PRIVATE
+        -Wall
+        -Wextra
+        -Wno-unused-parameter
+        -Wno-unused-variable
+        -O2
+    )
 endif()
 
 # Copy assets/ to build/
