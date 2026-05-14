@@ -1,0 +1,44 @@
+﻿# ── Build output ──────────────────────────────
+out/
+build/
+*.exe
+*.obj
+*.o
+*.pdb
+*.ilk
+*.exp
+*.lib
+
+# ── CMake cache ───────────────────────────────
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CPackConfig.cmake
+CPackSourceConfig.cmake
+
+# ── Visual Studio ─────────────────────────────
+.vs/
+*.user
+*.suo
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# ── Log files ─────────────────────────────────
+*.log
+log.txt
+logs/
+
+# ── SDL DLL (không commit dll vào repo) ───────
+*.dll
+
+# ── Kết quả thực nghiệm (nộp bài riêng) ──────
+# results/     ← bỏ comment nếu không muốn commit ảnh
+
+# ── OS files ──────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
